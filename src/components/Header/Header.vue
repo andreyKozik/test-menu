@@ -1,0 +1,99 @@
+<template>
+  <div class="main-header">
+    <Menu_1024_1440 :elements="elements" v-if="WINDOW_WIDTH > '1023'" />
+    <Menu_425_1023 :elements="elements" v-else />
+  </div>
+</template>
+
+<script>
+import { mapState } from "vuex";
+
+import Menu_425_1023 from "./Components/Menu425-1023.vue";
+import Menu_1024_1440 from "./Components/Menu1024-1440.vue";
+
+export default {
+  name: "Header",
+  props: {},
+  data() {
+    return {
+      elements: [
+        {
+          headings: "Элемент 1"
+        },
+        {
+          headings: "Элемент 2",
+          elLevel2: [
+            {
+              headings: "Элемент 2.1"
+            },
+            {
+              headings: "Элемент 2.2",
+              elLevel3: ["Элемент 2.2.1", "Элемент 2.2.2", "Элемент 2.2.3"]
+            },
+            {
+              headings: "Элемент 2.3"
+            },
+            {
+              headings: "Элемент 2.4",
+              elLevel3: [
+                "Элемент 2.4.1",
+                "Элемент 2.4.2",
+                "Элемент 2.4.3",
+                "Элемент 2.4.4",
+                "Элемент 2.4.5",
+                "Элемент 2.4.6",
+                "Элемент 2.4.7"
+              ]
+            },
+            {
+              headings: "Элемент 2.5"
+            },
+            {
+              headings: "Элемент 2.6"
+            }
+          ]
+        },
+        {
+          headings: "Элемент 3"
+        },
+        {
+          headings: "Элемент 4",
+          elLevel2: [
+            {
+              headings: "Элемент 4.1"
+            },
+            {
+              headings: "Элемент 4.2"
+            }
+          ]
+        },
+        {
+          headings: "Элемент 5"
+        },
+        {
+          headings: "Элемент 6"
+        }
+      ]
+    };
+  },
+  components: {
+    Menu_425_1023,
+    Menu_1024_1440
+  },
+  computed: {
+    ...mapState({
+      WINDOW_WIDTH: state => state.WINDOW_WIDTH
+    })
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/main.scss";
+.main-header {
+  width: 100%;
+  height: 60px;
+  background-color: $header-background-color;
+  color: $header-color;
+}
+</style>
